@@ -20,7 +20,7 @@ numbered clarification queue the user answers with `1. b`, `2. a, c`, etc.
 
 - One word or phrase per line
 - Language: DE, UA, or mixed
-- Optional hint via `=`: `hund = собака`, `See = озеро`
+- Optional hint via `=` or `:`: `hund = собака`, `See: озеро`
 - Explicit article (`der See`) = unambiguous, no question needed
 
 ## Output format
@@ -35,8 +35,7 @@ Multiple translations (inside Field 2):
 - Similar meaning → comma: `гарний, красивий`
 - Different meanings → semicolon: `том (книги); стрічка; гурт`
 
-CSV is sorted by German corpus frequency: most frequent first, phrases/idioms `[Rdw]` last,
-unknown-frequency words just before idioms.
+The CSV file is sorted by frequency of occurrence in the German corpus: most frequent first.
 
 ---
 
@@ -49,11 +48,11 @@ Summary of formats by PoS:
 |-----|---------------|---------|
 | Nomen | `art Wort, Gen-ending, Pl-ending` | `der Hund, -es, ¨-e` |
 | Nomen (pl only) | `art Wort (pl), -, -` | `die Leute (pl), -, -` |
-| Verb (regular) | `inf (Prät, hat/ist P.II)` | `kaufen (kaufte, hat gekauft)` |
+| Verb (regular) | `inf (3sg, Prät, hat/ist P.II)` | `kaufen (kauft, kaufte, hat gekauft)` |
 | Verb (Vokalwechsel) | `inf (3sg, Prät, hat/ist P.II)` | `fahren (fährt, fuhr, ist gefahren)` |
-| Verb (trennbar) | `pre\|inf (Prät, hat/ist P.II)` | `an\|rufen (rief an, hat angerufen)` |
-| Verb (reflexiv) | `sich inf (...)` | `sich freuen (freute sich, hat sich gefreut)` |
-| Verb (Rektion) | `inf (...); Präp +Kasus` | `warten (wartete, hat gewartet); auf +Akk` |
+| Verb (trennbar) | `inf (3sg, Prät, hat/ist P.II)` | `anrufen (ruft an, rief an, hat angerufen)` |
+| Verb (reflexiv) | `sich inf (3sg, Prät, hat/ist P.II)` | `sich freuen (freut sich, freute sich, hat sich gefreut)` |
+| Verb (Rektion) | `inf (3sg, Prät, hat/ist P.II); Präp +Kasus` | `warten (wartet, wartete, hat gewartet); auf +Akk` |
 | Adjektiv | `adj (Komp, Superl)` | `schnell (schneller, am schnellsten)` |
 | Adjektiv (irreg.) | `adj (Komp, Superl)` | `gut (besser, am besten)` |
 | Adjektiv (Rektion) | `adj Präp +Kasus (Komp, Superl)` | `stolz auf +Akk (stolzer, am stolzesten)` |
@@ -62,14 +61,11 @@ Summary of formats by PoS:
 | Wechselpräp. | `präp +Dat/+Akk [wo/wohin]` | `in +Dat/+Akk [wo/wohin]` |
 | Konjunktion | `konj [type]` | `weil [sub]` |
 | Partikel | `wort [partikel]<br>Beispielsatz.` | `doch [partikel]<br>Das ist doch klar!` |
+| Abkürzung | `Volle Name (ABKÜR.) [Abk.]` | `Europäische Union (EU) [Abk.]` |
 | Pronomen | word only | `jemand` |
 | Zahlwort | word only | `zwanzig` |
 | Phrase | phrase as-is | `auf jeden Fall` |
-| Redewendung | `phrase [Rdw]` | `jdm. auf die Nerven gehen [Rdw]` |
-
-**Verb note:** Write `hat` and `ist` in full, never abbreviated. Add 3sg Präsens **only** when there is a vowel change (fahren→fährt, lesen→liest). Regular 3sg (kauft, macht) — omit.
-
-**Adjektiv note:** Show comparative for ALL adjectives, including regular ones.
+| Redewendung | `phrase [Rdw]` | `jemandem auf die Nerven gehen [Rdw]` |
 
 ---
 
@@ -81,7 +77,6 @@ Summary of formats by PoS:
 | `¨-e` | Umlaut + ending -e |
 | `-` | No change / form absent |
 | `(pl)` | Pluralia tantum |
-| `\|` | Trennbar boundary (an\|rufen) |
 | `sich` | Reflexive verb |
 | `+Akk / +Dat / +Gen` | Case after preposition |
 | `+Dat/+Akk` | Wechselpräposition |
@@ -90,10 +85,9 @@ Summary of formats by PoS:
 | `[sub]` | Subordinating conjunction (verb to end) |
 | `[adv]` | Adverbial conjunction (verb-second inversion) |
 | `[partikel]` | Modal particle |
+| `[Abk.]` | Abkürzung — full form known |
 | `[Rdw]` | Redewendung / idiom |
 | `[ugs.]` | Colloquial/slang |
-| `jdm.` | jemandem (Dat) |
-| `etw.` | etwas (Akk) |
 | `<br>` | Line break in Anki card |
 
 ---
@@ -116,7 +110,7 @@ Summary of formats by PoS:
 |-----------|--------|
 | Verb not in infinitive (`fuhr`) | Normalize silently → `fahren` |
 | Inflected adjective (`schnellen`) | Normalize silently → `schnell` |
-| Trennbar in conjugated form (`ruft an`) | Normalize silently → `an\|rufen` |
+| Trennbar in conjugated form (`ruft an`) | Normalize silently → `anrufen` |
 | Plural with unambiguous singular (`Hunde`) | Normalize silently → `der Hund` |
 | Plural ambiguous (maps to 2+ singulars) | → Clarification queue |
 | Pluralia tantum (`Leute`) | Keep, add `(pl)` |
@@ -140,6 +134,8 @@ Quick reference — when to ask vs. act silently:
 | UA word with multiple DE translations | Ask which to use; allow selecting multiple |
 | Abstract UA word | Ask for usage context, propose candidates |
 | Multi-word input, unknown if fixed phrase | Ask: fixed phrase or separate words? |
+| Abbreviation with unknown full form | Ask for clarification — show known candidates if any |
+| Kompositum (compound word) | Recommend components, allow selecting full word + parts |
 
 ---
 
@@ -147,26 +143,37 @@ Quick reference — when to ask vs. act silently:
 
 ```
 ✅ ГОТОВО — 27 карток
-
-[CSV block — ready to copy]
-
 ────────────────────────
-⚠️ ПОТРЕБУЄ УТОЧНЕННЯ — 3 пункти
+
+⚠️ ПОТРЕБУЄ УТОЧНЕННЯ — 4 пункти
 
 1. "See" — кілька значень:
-   [a] der See, -s, -n — озеро (внутрішня водойма)
-   [b] die See, -, -n — море (відкрита вода)
-   [c] обидва (дві окремі картки)
+   [a] der See, -s, -n — озеро
+   [b] die See, -, -n — море
+   [c] Усі
+   [d] Пропустити
 
 2. "übersetzen" — два різних дієслова:
-   [a] über|setzen (fuhr über, ist übergesetzt) — перевезти через воду/кордон
-   [b] übersetzen (übersetzte, hat übersetzt) — перекладати текст
+   [a] übersetzen (setzt über, setzte über, ist übergesetzt) — перевозити через воду/кордон
+   [b] übersetzen (übersetzt, übersetzte, hat übersetzt) — перекладати текст
+   [c] Усі
+   [d] Пропустити
 
 3. "іти" — яке значення руху?
    [a] gehen (ging, ist gegangen) — іти пішки
-   [b] fahren (fuhr, ist gefahren) — їхати транспортом
-   [c] laufen (lief, ist gelaufen) — бігти / іти (розм.)
-   [d] усі три (три окремі картки)
+   [b] fahren (fährt, fuhr, ist gefahren) — їхати транспортом
+   [c] laufen (läuft, lief, ist gelaufen) — бігти / іти (розм.)
+   [d] Усі
+   [e] Пропустити
+
+4. "Umrechnungsfaktor" — що додати?
+   AI рекомендує: a + b
+   [a] der Umrechnungsfaktor, -s, -en — коефіцієнт перерахунку
+   [b] umrechnen (rechnet um, rechnete um, hat umgerechnet) — перераховувати
+   [c] die Umrechnung, -, -en — перерахунок
+   [d] der Faktor, -s, -en — фактор, коефіцієнт
+   [e] Усі
+   [f] Пропустити
 ```
 
 User replies in one message:
@@ -174,15 +181,7 @@ User replies in one message:
 1. b
 2. a
 3. a, c
+4. a, b
 ```
 
-Then append resolved cards, re-sort, output final complete CSV.
-
----
-
-## Built-in documentation block
-
-The Artifact includes a collapsible "Як читати картки" section with:
-- Full symbol legend
-- One example per PoS
-- Conjunction type table with word-order explanation in Ukrainian
+Accepted answer values: letter(s) (`a`, `b`, `a, c`), `усі` (all options), `пропустити` (skip entry).

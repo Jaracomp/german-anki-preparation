@@ -38,39 +38,37 @@ die Kosten (pl), -, -        → Тільки множина
 
 ## Verb
 
-Format: `Infinitiv (3sg-якщо-Vokalwechsel, Präteritum, hat/ist Partizip II)`
+Format: `Infinitiv (3sg-Präsens, Präteritum, hat/ist Partizip II)`
 
 ### Регулярні (слабкі):
 ```
-kaufen (kaufte, hat gekauft)
-machen (machte, hat gemacht)
-arbeiten (arbeitete, hat gearbeitet)
-öffnen (öffnete, hat geöffnet)
+kaufen (kauft, kaufte, hat gekauft)
+machen (macht, machte, hat gemacht)
+arbeiten (arbeitet, arbeitete, hat gearbeitet)
+öffnen (öffnet, öffnete, hat geöffnet)
 ```
 
-### Нерегулярні (сильні) без Vokalwechsel у Präsens:
+### Нерегулярні (сильні):
 ```
-fahren (fuhr, ist gefahren)
-schreiben (schrieb, hat geschrieben)
-bleiben (blieb, ist geblieben)
-gehen (ging, ist gegangen)
-kommen (kam, ist gekommen)
+gehen (geht, ging, ist gegangen)
+sehen (sieht, sah, hat gesehen)
+kommen (kommt, kam, ist gekommen)
+nehmen (nimmt, nahm, hat genommen)
+schreiben (schreibt, schrieb, hat geschrieben)
 ```
 
 ### Нерегулярні з Vokalwechsel у Präsens (3sg):
 ```
-fahren (fährt, fuhr, ist gefahren)       a → ä
-laufen (läuft, lief, ist gelaufen)       au → äu
-lesen (liest, las, hat gelesen)          e → ie
-geben (gibt, gab, hat gegeben)           e → i
-nehmen (nimmt, nahm, hat genommen)       e → i (+ подвоєння m)
-essen (isst, aß, hat gegessen)           e → i
-sehen (sieht, sah, hat gesehen)          e → ie
-tragen (trägt, trug, hat getragen)       a → ä
-schlafen (schläft, schlief, hat geschlafen)  a → ä
+fahren (fährt, fuhr, ist gefahren)          a → ä
+laufen (läuft, lief, ist gelaufen)          au → äu
+lesen (liest, las, hat gelesen)             e → ie
+geben (gibt, gab, hat gegeben)              e → i
+nehmen (nimmt, nahm, hat genommen)          e → i (+ подвоєння m)
+essen (isst, aß, hat gegessen)              e → i
+sehen (sieht, sah, hat gesehen)             e → ie
+tragen (trägt, trug, hat getragen)          a → ä
+schlafen (schläft, schlief, hat geschlafen) a → ä
 ```
-
-3sg додається тільки коли є зміна голосної. `kauft`, `macht` — не додавати.
 
 ### Модальні дієслова:
 ```
@@ -84,30 +82,28 @@ mögen (mag, mochte, hat gemocht)
 
 ### Розділювані (trennbar):
 ```
-an|rufen (rief an, hat angerufen)
-ab|fahren (fuhr ab, ist abgefahren)
-auf|machen (machte auf, hat aufgemacht)
-ein|kaufen (kaufte ein, hat eingekauft)
-mit|nehmen (nimmt mit, nahm mit, hat mitgenommen)    ← + Vokalwechsel
+anrufen (ruft an, rief an, hat angerufen)
+abfahren (fährt ab, fuhr ab, ist abgefahren)      ← + Vokalwechsel
+aufmachen (macht auf, machte auf, hat aufgemacht)
+einkaufen (kauft ein, kaufte ein, hat eingekauft)
+mitnehmen (nimmt mit, nahm mit, hat mitgenommen)  ← + Vokalwechsel
 ```
-
-Präteritum і P.II пишемо в злитій формі (як в словнику).
 
 ### Зворотні (reflexiv):
 ```
-sich freuen (freute sich, hat sich gefreut)
-sich erinnern (erinnerte sich, hat sich erinnert)
+sich freuen (freut sich, freute sich, hat sich gefreut)
+sich erinnern (erinnert sich, erinnerte sich, hat sich erinnert)
 sich waschen (wäscht sich, wusch sich, hat sich gewaschen)   ← + Vokalwechsel
 ```
 
 ### З Rektion:
 ```
-warten (wartete, hat gewartet); auf +Akk
-sich freuen (freute sich, hat sich gefreut); auf +Akk / über +Akk
-denken (dachte, hat gedacht); an +Akk
+warten (wartet, wartete, hat gewartet); auf +Akk
+sich freuen (freut sich, freute sich, hat sich gefreut); auf +Akk / über +Akk
+denken (denkt, dachte, hat gedacht); an +Akk
 sprechen (spricht, sprach, hat gesprochen); über +Akk / von +Dat
 helfen (hilft, half, hat geholfen); +Dat
-gehören (gehörte, hat gehört); +Dat
+gehören (gehört, gehörte, hat gehört); +Dat
 ```
 
 Rektion через крапку з комою. Якщо кілька варіантів — через ` / `.
@@ -269,3 +265,22 @@ schon [partikel]<br>Das wird schon klappen.
 denn [partikel]<br>Was ist denn los?
 → посилення питання, зацікавленість: "Що ж трапилось?"
 ```
+
+---
+
+## Abkürzung
+
+Format: `Повна назва (СКОР.) [Abk.]`
+
+Картка показує і розшифровку, і скорочення — щоб обидві форми активно вивчались.
+
+```
+Europäische Union (EU) [Abk.]
+Surface-Mount Device (SMD) [Abk.]
+Kraftfahrzeug (Kfz) [Abk.]
+Gesellschaft mit beschränkter Haftung (GmbH) [Abk.]
+```
+
+Якщо повна форма невідома → черга уточнень.
+
+Переклад: повна назва перекладається, скорочення зазвичай залишається як є.
